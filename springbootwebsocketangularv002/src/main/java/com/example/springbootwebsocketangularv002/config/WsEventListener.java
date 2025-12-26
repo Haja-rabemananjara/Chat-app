@@ -1,5 +1,7 @@
 package com.example.springbootwebsocketangularv002.config;
 
+import com.example.springbootwebsocketangularv002.controller.WsChatMessage;
+import com.example.springbootwebsocketangularv002.controller.WsChatMessageType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
@@ -36,6 +38,7 @@ public class WsEventListener {
             log.info("User disconnected: {} ", username);
             var message = WsChatMessage.builder()
                     .type(WsChatMessageType.LEAVE)
+                    .sender(username)
                     .build();
             // This is to send message to all subscribers of the topic
             messageSendingOperations.convertAndSend("/topic/public",message);
