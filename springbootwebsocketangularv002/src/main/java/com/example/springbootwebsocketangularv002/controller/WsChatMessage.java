@@ -11,5 +11,5 @@ public class WsChatMessage {
 
     private String sender;
     private String content;
-    private WsChatMessageType Type;
+    private WsChatMessageType type;
 }
