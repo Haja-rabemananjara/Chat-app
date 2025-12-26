@@ -40,7 +40,7 @@ public class WsEventListener {
                     .type(WsChatMessageType.LEAVE)
                     .sender(username)
                     .build();
-            // This is to send message to all subscribers of the topic
+            // This is to send message to all subscribers of the topic/public
             messageSendingOperations.convertAndSend("/topic/public",message);
         }
     }
