@@ -25,7 +25,7 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 @Slf4j
 public class WsEventListener {
 
-    // To send messages to clients subscribed to a specific topic.
+    // method called when user close oage in browser.
     @EventListener
     public void handleWsDisconnectListener(SessionDisconnectEvent event){
 
