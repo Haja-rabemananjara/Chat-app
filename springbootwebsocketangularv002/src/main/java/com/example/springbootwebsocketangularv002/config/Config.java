@@ -19,7 +19,12 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class Config implements WebSocketMessageBrokerConfigurer {
 
-    // Allow webSocket connection. This allows the angular client to connect.
+    /**
+     * Register STOMP endpoints for WebSocket connections.
+     * It defines the endpoint "/ws" and allows cross-origin requests from "http://localhost:4200".
+     * It also enables SockJS fallback options for browsers that do not support WebSocket.
+     * @param registry The StompEndpointRegistry to register endpoints.
+     */
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws") //  PATH A REVOIR!!!!!
@@ -27,7 +32,12 @@ public class Config implements WebSocketMessageBrokerConfigurer {
                 .withSockJS();
     }
 
-    // Configure message broker options.
+    /**
+     * Configure message broker options.
+     * It sets the application destination prefix to "/app" and enables a simple in-memory message broker
+     * with the destination prefix "/topic".
+     * @param registry The MessageBrokerRegistry to configure message broker options.
+     */
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.setApplicationDestinationPrefixes("/app");

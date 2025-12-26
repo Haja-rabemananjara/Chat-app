@@ -29,9 +29,13 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 @Slf4j
 public class WsEventListener {
 
+
     private final SimpMessageSendingOperations messageSendingOperations;
 
-    // method called when user close page in browser.
+    /**
+     * Handle WebSocket connection event.
+     * @param event The session connect event.
+     */
     @EventListener
     public void handleWsDisconnectListener(SessionDisconnectEvent event){
 
