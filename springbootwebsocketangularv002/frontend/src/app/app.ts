@@ -1,3 +1,4 @@
+import { Message } from '@stomp/stompjs';
 import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Websocket } from './services/websocket';
@@ -9,7 +10,13 @@ import { Websocket } from './services/websocket';
   styleUrl: './app.css'
 })
 export class App implements OnInit{
-  protected readonly title = signal('frontend');
+
+  title = 'frontend';
+  username: string = ''; // User's name
+  message: string = ''; // Current message input
+  messages: any[] = []; // Array to hold chat messages
+  isConnected: boolean = false; // Connection status
+  connectingMessage: string = 'Connecting to WebSocket...'; // Message shown while connecting
 
   constructor( private websocketService: Websocket) {
     console.log('App component constructed');
@@ -18,6 +25,24 @@ export class App implements OnInit{
   // Lifecycle hook
   ngOnInit(): void {
     console.log('App component initialized');
+
+    // Subscribe to incoming messages observable from Websocket service
+    this.websocketService.messages$.subscribe(message => {
+      if (message) {
+        // Log the received message and update local state as needed
+        console.log(`New message received from ${message.sender}: ${message.content}`);
+        this.messages.push(message);
+      }
+    });
+
+    // Subscribe to connection status observable from Websocket service
+    this.websocketService.connectionStatus$.subscribe(connected => {
+      this.isConnected = connected;
+      if (connected) {
+        this.connectingMessage = '';
+        console.log('WebSocket connection established');
+      }
+    });
   }
 
   connect(){
