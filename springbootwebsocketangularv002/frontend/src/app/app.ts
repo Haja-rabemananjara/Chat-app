@@ -37,9 +37,9 @@ export class App implements OnInit{
 
     // Subscribe to connection status observable from Websocket service
     this.websocketService.connectionStatus$.subscribe(connected => {
-      this.isConnected = connected;
+      this.isConnected = connected; // Update local connection status
       if (connected) {
-        this.connectingMessage = '';
+        this.connectingMessage = ''; // Clear connecting message on successful connection
         console.log('WebSocket connection established');
       }
     });
@@ -47,6 +47,8 @@ export class App implements OnInit{
 
   connect(){
 
+    console.log(`Attempting to connect to WebSocket at http://localhost:8080/ws as user: ${this.username}`);
+    this.websocketService.connect(this.username); // Call connect method in Websocket service
   }
 
   sendMEssage(){
