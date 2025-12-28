@@ -1,11 +1,12 @@
-import { Message } from '@stomp/stompjs';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Websocket } from './services/websocket';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,CommonModule, FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -51,7 +52,7 @@ export class App implements OnInit{
     this.websocketService.connect(this.username); // Call connect method in Websocket service
   }
 
-  sendMEssage(){
+  sendMessage(){
     if (this.message) {
       this.websocketService.sendMessage(this.username, this.message); // Send message via Websocket service
       this.message = ''; // Clear input field after sending
@@ -59,7 +60,7 @@ export class App implements OnInit{
 
   }
 
-  setAvatarColor(sender: string):string{
+  getAvatarColor(sender: string):string{
 
     // Array of colors to choose from
     const colors = [
