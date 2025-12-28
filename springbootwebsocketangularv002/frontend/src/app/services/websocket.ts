@@ -13,7 +13,7 @@ export class Websocket {
 
   // Message tracking
   private messageSubject = new BehaviorSubject<any>(null);
-  public messages$ = this.messageSubject.asObservable(); // Observable for messages
+  public messages$ = this.messageSubject.asObservable(); // Observable for messages. Observable : a data stream that components can subscribe to in order to receive updates.
 
   // Connection status tracking
   private connectionSubject = new BehaviorSubject<boolean>(false);
