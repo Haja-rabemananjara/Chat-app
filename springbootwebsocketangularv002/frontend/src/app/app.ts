@@ -61,7 +61,19 @@ export class App implements OnInit{
 
   setAvatarColor(sender: string):string{
 
-    return ""
+    // Array of colors to choose from
+    const colors = [
+      '#2196F3', '#32c787', '#00BCD4', '#ff5652',
+      '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
+    ];
+    let hash = 0;
+    for (let i = 0; i < sender.length; i++) {
+      // Compute hash value based on sender's name. Hash : a function that converts input data into a fixed-size string of characters, which is typically a sequence of numbers and letters.
+      hash = 31 * hash + sender.charCodeAt(i);
+    }
+
+    // Return color based on hash value
+    return colors[Math.abs(hash % colors.length)];
 
   }
 }
