@@ -73,7 +73,19 @@ Launch:
 ng serve
 
 ### Others
-
-#### STOMP
+Need to be installed in the frontend
 
 #### SockJS
+SockJS is a library that mimics WebSocket for browsers that do not fully support it.
+SockJS = WebSocket + automatic fallback solutions
+
+Installation:
+npm install --save-dev @types/sockjs-client
+npm install sockjs-client
+
+#### STOMP
+STOMP (Simple Text Oriented Messaging Protocol) is a messaging protocol that operates on top of WebSocket/SockJS.
+WebSocket/SockJS transports raw data (like a pipe). STOMP is a structured language for communicating within that pipe.
+
+Installation:
+npm install @stomp/stompjs
