@@ -48,7 +48,7 @@ mvn spring-boot:run
 ### Frontend
 Angular
 
-#### Initiliaization
+#### Initialiization and launch
 Install Node.js (Javascript execution environment):
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 source ~/.bashrc
@@ -57,17 +57,20 @@ node --version
 npm --version
 
 
-intall :
+install :
 npm install -g @angular/cli
 
-Creation of new project
+Creation of new project:
 ng new <project-name>
 
-Build in the frontend directory
+Build in the frontend directory:
 ng build
 
-Create service
+Create service:
 ng g s services/websocket
+
+Launch:
+ng serve
 
 ### Others
 

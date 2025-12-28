@@ -1,5 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Websocket } from './services/websocket';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,10 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App implements OnInit{
   protected readonly title = signal('frontend');
+
+  constructor( private websocketService: Websocket) {
+    console.log('App component constructed');
+  }
 
   // Lifecycle hook
   ngOnInit(): void {
