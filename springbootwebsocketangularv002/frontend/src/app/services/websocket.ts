@@ -59,12 +59,32 @@ export class Websocket {
   }
 
   sendMessage(message: string, username: string){
+    if (this.stompClient && this.stompClient.connected) {
+      // Construct chat message object
+      const chatMessage = {
+        sender: username,
+        content: message,
+        type: 'CHAT'
+      };
 
+      // Log the message being sent
+      console.log(`Message sent by ${username}: ${message}`);
+
+      // Send the chat message to the server
+      this.stompClient.publish({
+        destination: '/app/chat.sendMessage', // Adjust the destination as needed
+        body: JSON.stringify(chatMessage), // Convert message object to JSON string
+      });
+
+    } else {
+      // Log error if not connected
+      console.error('Cannot send message: not connected to WebSocket server');
+    }
   }
 
   disconnect(){
     if (this.stompClient) {
-      this.stompClient.deactivate();
+      this.stompClient.deactivate(); // Deactivate the STOMP client
     }
   }
 }
