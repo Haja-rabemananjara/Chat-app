@@ -52,6 +52,10 @@ export class App implements OnInit{
   }
 
   sendMEssage(){
+    if (this.message) {
+      this.websocketService.sendMessage(this.username, this.message); // Send message via Websocket service
+      this.message = ''; // Clear input field after sending
+    }
 
   }
 
