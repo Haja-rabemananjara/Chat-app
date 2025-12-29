@@ -20,7 +20,7 @@
     </div>
 
     <!-- Username input field -->
-     <form (ngSubmit)="connect()" class="space-y-6">
+    <form (ngSubmit)="connect()" class="space-y-6">
       <div>
         <label for="username" class="block text-sm font-medium text-gray-700 mb-2">Username</label>
         <input type="text" id="username" [(ngModel)]="username" name="username" required
@@ -32,8 +32,27 @@
               class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-200">
         Connect
       </button>
-     </form>
+    </form>
   </div>
 </div>
 
- 
+ <!-- Chat page (if connected)-->
+<div *ngIf="isConnected" class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+  <! -- Header -->
+  <header class="bg-gradient-to-r from-blue-600 via-indigo-600 to to-purple-600 text-white shadow-2xl sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center justify-between">
+        <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        </div>
+
+        <div>
+          <h1 class="text-2xl font-bold ml-4">ChatApp</h1>
+          <p class="text-blue-100 opacity-90 ml-4">{{message.length}} messages</p>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
