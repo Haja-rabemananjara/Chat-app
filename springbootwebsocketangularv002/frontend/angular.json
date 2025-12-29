@@ -18,6 +18,9 @@
           "options": {
             "browser": "src/main.ts",
             "allowedCommonJsDependencies": ["sockjs-client"],
+            "define": {
+              "global": "window"
+            },
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
