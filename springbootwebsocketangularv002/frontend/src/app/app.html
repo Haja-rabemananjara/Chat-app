@@ -74,7 +74,7 @@
             'event-message':message.type !== 'CHAT',
             'chat-message':message.type === 'CHAT'
           }"
-          class="animate-in slide-in-from-bottom duration-300">
+          class="animate-in slide-in-from-bottom-2 duration-300">
 
           <! -- Avatar -->
           <div *ngIf="message.type === 'CHAT'" class="flex items-center space-x-4">
@@ -82,16 +82,43 @@
                 [style.backgroundColor]="getAvatarColor(message.sender)">
               {{message.sender.charAt(0).toUpperCase()}}
             </div>
-            <div>
-              <div>
 
+            <div class="flex-1 min-w-0">
+              <div class="flex itmes-center gap-2 mb-1">
+                <span class="font-bold text-gray-900 text-sm">{{message.sender}}</span>
+                <span class="text-xs text-gray-500 ml-2">{{ (message.timestamp) }}</span>
+              </div>
+
+              <div class="p-4 bg-white rounded-2xl shadow-md border border-gray-200">
+                <p class="text-gray-800 leading-relaxed">{{message.content}}</p>
               </div>
             </div>
           </div>
         </li>
       </ul>
-
     </div>
 
+    <!-- Message input area -->
+    <form (ngSubmit)="sendMessage()">
+      <div>
+        <input 
+          [(ngModel)]="message"
+          name="message"
+          type="text"
+          placeholder="Type your message here..."
+          autocomplete="off"
+          class="w-full mt-6 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+          (keyup.enter)="sendMessage()" 
+        />
+
+        <button 
+          type="submit"
+          [disabled]="!message.trim()"
+          class="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-200">
+          Send Message
+        </button>
+
+      </div>
+    </form>
   </main>
 </div>
