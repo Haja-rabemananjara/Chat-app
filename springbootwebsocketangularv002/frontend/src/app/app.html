@@ -55,4 +55,43 @@
       </div>
     </div>
   </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-8">
+    <!-- Messages display area -->
+    <div *ngIf="connectingMessage" class="max-w-2xl mx-auto p-6 bg-gradient-to-r from-yellow-100 to-orange-100 border-l-4 border-yellow-400 rounded-xl shadow-lg mb-8 animate-pulse">
+      <div class="flex items-center">
+        <div class="w-6 h-6 bg-yellow-400 rounded-full mr-4"></div>
+        <span class="text-yellow-800 font-medium">{{connectingMessage}}</span>
+      </div>
+    </div>
+
+    <!-- Messages container -->
+    <div class="max-w-4xl mx-auto h-[70vh] bg-white/70 backdrop-blur-lg border border-white/50 rounded-3xl shadow-2xl p-6 overflow-y-auto space-y-4">
+      <ul id="messageArea" class="h-full p-8 space-y-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+        <li
+          *ngFor="let message of messages"
+          [ngClass]="{
+            'event-message':message.type !== 'CHAT',
+            'chat-message':message.type === 'CHAT'
+          }"
+          class="animate-in slide-in-from-bottom duration-300">
+
+          <! -- Avatar -->
+          <div *ngIf="message.type === 'CHAT'" class="flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-2xl flex-shrink-0 flex items-center justify-center text-lg font-bold shadow-lg"
+                [style.backgroundColor]="getAvatarColor(message.sender)">
+              {{message.sender.charAt(0).toUpperCase()}}
+            </div>
+            <div>
+              <div>
+
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+
+  </main>
 </div>

@@ -46,7 +46,7 @@ mvn clean install
 mvn spring-boot:run
 
 ### Frontend
-Angular
+Angular - tailwind
 
 #### Initialiization and launch
 Install Node.js (Javascript execution environment):

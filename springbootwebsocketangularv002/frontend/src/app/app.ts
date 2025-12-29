@@ -4,18 +4,28 @@ import { Websocket } from './services/websocket';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+interface Message {
+  type: 'CHAT' | 'JOIN' | 'LEAVE';
+  sender: string;
+  content: string;
+  timestamp?: string;
+  id?: string;
+}
+
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet,CommonModule, FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
+
 export class App implements OnInit{
 
   title = 'frontend';
   username: string = ''; // User's name
   message: string = ''; // Current message input
-  messages: any[] = []; // Array to hold chat messages
+  messages: Message[] = []; // Array to hold chat messages
   isConnected: boolean = false; // Connection status
   connectingMessage: string = 'Connecting to WebSocket...'; // Message shown while connecting
 
@@ -28,7 +38,7 @@ export class App implements OnInit{
     console.log('App component initialized');
 
     // Subscribe to incoming messages observable from Websocket service
-    this.websocketService.messages$.subscribe(message => {
+    this.websocketService.messages$.subscribe((message: Message) => {
       if (message) {
         // Log the received message and update local state as needed
         console.log(`New message received from ${message.sender}: ${message.content}`);
