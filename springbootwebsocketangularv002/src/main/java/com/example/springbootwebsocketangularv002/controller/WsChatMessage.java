@@ -17,7 +17,7 @@ import lombok.*;
 @Builder
 public class WsChatMessage {
 
-    private String sender;
     private String content;
+    private String sender;
     private WsChatMessageType type;
 }
